@@ -4,6 +4,8 @@ Public Key Wish Exchange Platform
 
 [English Version](#english-version)
 
+![demo](./demo.png)
+
 # 中文版本
 
 交換禮物怕收到垃圾？試試看交換願望！
