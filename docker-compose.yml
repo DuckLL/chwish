@@ -1,0 +1,28 @@
+version: "3"
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - 127.0.0.1:3000:80
+    volumes:
+      - ./app:/app
+      - ./site.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    restart: always
+    depends_on: 
+      - php
+      - mysql
+  php:
+    build: .
+    volumes:
+      - ./app:/app
+    restart: always
+  mysql:
+    image: mysql:5
+    environment:
+      - MYSQL_DATABASE=chwish
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./mysql_dump:/docker-entrypoint-initdb.d
+    restart: always
