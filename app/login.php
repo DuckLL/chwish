@@ -17,7 +17,7 @@ if (isset($_POST['username'])) {
 <html>
 
 <head>
-	<title>CHWISH: 願望交換系統</title>
+	<title>CHWISH: 願望交換平台</title>
 	<link rel="icon" href="./img/close.svg" sizes="any" type="image/svg+xml">
 	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 	<link href="./css/style.css" rel="stylesheet">
