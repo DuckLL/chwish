@@ -71,7 +71,7 @@ $(function () {
         })
     });
 
-    $('#comfirmwish').click(function () {
+    $('#confirmwish').click(function () {
         $.ajax({
             url: 'control.php',
             type: 'POST',

@@ -147,7 +147,7 @@ if ($member_count === $confirm_count) {
                     <label for="textarea_field">Decrypted Wish</label>
                     <textarea id="decwish" class="nes-textarea" rows="5"></textarea>
                     <div class="shiftdown">
-                        <button id="comfirmwish" class="nes-btn is-success">Comfirm Wish</button>
+                        <button id="confirmwish" class="nes-btn is-success">Confirm Wish</button>
                     </div>
                 </section>
             </main>
