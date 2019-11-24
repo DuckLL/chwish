@@ -10,7 +10,7 @@ if (isset($_POST['pubkey'])) {
     $rs->execute();
     $all_done = true;
     while ($row = $rs->fetch()) {
-        if ($row[0] == "") {
+        if ($row[0] === "") {
             $all_done = false;
             break;
         }
@@ -34,7 +34,7 @@ if (isset($_POST['pubkey'])) {
     $all_key = array();
     while ($row = $rs->fetch()) {
         $member_count += 1;
-        if ($row[0] == "") {
+        if ($row[0] === "") {
             $all_done = false;
             break;
         }
@@ -43,7 +43,7 @@ if (isset($_POST['pubkey'])) {
     if ($all_done) {
         $member = range(0, $member_count - 1);
         $chain_len = 1;
-        while ($chain_len != $member_count) {
+        while ($chain_len !== $member_count) {
             shuffle($member);
             $chain_len = 1;
             $now = $member[0];

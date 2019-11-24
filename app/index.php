@@ -22,7 +22,7 @@ while ($row = $rs->fetch()) {
     if ($row['confirm']) {
         $confirm_count += 1;
     }
-    if ($row['id'] == $_SESSION['id']) {
+    if ($row['id'] === $_SESSION['id']) {
         $pubkey = $row['pubkey'];
         $enckey = $row['enckey'];
     }
@@ -30,13 +30,13 @@ while ($row = $rs->fetch()) {
 }
 shuffle($all_msg);
 $progress = 1;
-if ($member_count == $key_count) {
+if ($member_count === $key_count) {
     $progress += 1;
 }
-if ($member_count == $msg_count) {
+if ($member_count === $msg_count) {
     $progress += 1;
 }
-if ($member_count == $confirm_count) {
+if ($member_count === $confirm_count) {
     $progress += 1;
 }
 ?>
@@ -76,8 +76,9 @@ if ($member_count == $confirm_count) {
                     <H3 class="title">Gift Rule</H3>
                     <div class="lists">
                         <ul class="nes-list is-circle">
-                            <li>均價XXX，上限XXX</li>
-                            <li>根據期望優先順序寫三個物品</li>
+                            <?php foreach ($rules as $rule) {
+                                echo '<li>' . $rule . '</li>';
+                            } ?>
                         </ul>
                     </div>
                 </section>
@@ -133,7 +134,7 @@ if ($member_count == $confirm_count) {
                     <textarea id="msg" class="nes-textarea" rows="5" disabled></textarea>
                     <div class="shiftdown">
                         <?php
-                        if ($member_count == $msg_count) {
+                        if ($member_count === $msg_count) {
                             foreach ($all_msg as $msg) {
                                 echo '<i value="' . $msg . '" class="nes-icon is-large treasure"></i>';
                             }
