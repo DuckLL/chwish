@@ -1,6 +1,6 @@
 <?php
 require_once('./database.php');
-if (isset($_POST['passcode']) && $_POST['passcode'] == $passcode) {
+if (isset($_POST['passcode']) && $_POST['passcode'] === $passcode) {
     $sql = "INSERT INTO user (username, password) VALUES (?,?)";
     $rs = $db->prepare($sql);
     $rs->execute(array(password_hash($_POST['username'], PASSWORD_DEFAULT), password_hash($_POST['password'], PASSWORD_DEFAULT)));
