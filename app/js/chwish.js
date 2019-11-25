@@ -6,7 +6,7 @@ $(function () {
             default_key_size: keySize
         });
         crypt.getKey();
-        $('#privkey').val(crypt.getPrivateKey());
+        $('#prikey').val(crypt.getPrivateKey());
         $('#pubkey').val(crypt.getPublicKey());
     });
 
@@ -28,7 +28,7 @@ $(function () {
     });
 
     $('#copyprikey').click(function () {
-        var copyText = $("#privkey");
+        var copyText = $("#prikey");
         copyText.select();
         var copyStatus = document.execCommand("Copy");
         var msg = copyStatus ? 'copied' : 'failed';
@@ -44,13 +44,14 @@ $(function () {
                     pubkey: $('#pubkey').val()
                 },
                 error: function (xhr) {
-                    alert('error');
+                    alert(xhr.responseText);
                 },
                 success: function (response) {
                     alert(response);
+                    window.localStorage.prikey = btoa($('#prikey').val())
                     location.reload();
                 }
-            })
+            });
         }
     });
 
@@ -88,11 +89,28 @@ $(function () {
         })
     });
 
+    $('#cancelconfirm').click(function () {
+        $.ajax({
+            url: 'control.php',
+            type: 'POST',
+            data: {
+                confirm: 0
+            },
+            error: function (xhr) {
+                alert('error');
+            },
+            success: function (response) {
+                alert(response);
+                location.reload();
+            }
+        })
+    });
+
     $(".treasure").click(function () {
         $(".treasure").removeClass("active");
         $(this).addClass("active");
         $('#msg').val($(this).attr('value'));
-    })
+    });
 
     $(window).mousewheel(function (e) {
         if (e.deltaY > 5) {
@@ -103,7 +121,11 @@ $(function () {
             $('#progress').hide();
             $('#description').hide();
         }
-    })
+    });
+
+    if (window.localStorage.prikey) {
+        $('#deckey').val(atob(window.localStorage.prikey));
+    }
 
 
 });
