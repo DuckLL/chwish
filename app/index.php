@@ -51,7 +51,7 @@ if ($member_count === $confirm_count) {
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/2.3.1/jsencrypt.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
-    <script src="./js/chwish.js"></script>
+    <script src="./js/chwish.js" intergrity="sha384-<?php echo $js_hash; ?>"></script>
 </head>
 
 <body>
@@ -102,7 +102,7 @@ if ($member_count === $confirm_count) {
                     <label for="textarea_field">Public Key</label>
                     <textarea name="pubkey" id="pubkey" class="nes-textarea" rows="5" disabled><?php echo $pubkey; ?></textarea>
                     <label for="textarea_field">Private Key</label>
-                    <textarea id="privkey" class="nes-textarea" rows="5"></textarea>
+                    <textarea id="prikey" class="nes-textarea" rows="5"></textarea>
                     <div class="shiftdown">
                         <button id="generate" class="nes-btn is-error">Generate Key</button>
                         <button id="copyprikey" class="nes-btn is-warning">Copy Private Key</button>
@@ -148,12 +148,14 @@ if ($member_count === $confirm_count) {
                     <textarea id="decwish" class="nes-textarea" rows="5"></textarea>
                     <div class="shiftdown">
                         <button id="confirmwish" class="nes-btn is-success">Confirm Wish</button>
+                        <button id="cancelconfirm" class="nes-btn is-error">Cancel</button>
                     </div>
                 </section>
             </main>
             <footer>
                 <p><span>©2019</span> <a href="https://duckll.tw/" target="_blank" rel="noopener">DuckLL</a></p>
                 <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+                <p style="overflow:auto;"><?php echo $js_hash; ?></p>
             </footer>
         </div>
     </div>

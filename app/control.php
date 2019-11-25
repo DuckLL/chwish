@@ -16,6 +16,7 @@ if (isset($_POST['pubkey'])) {
         }
     }
     if ($all_done) {
+        http_response_code(403);
         echo 'enckey is allocated';
         exit;
     }
@@ -75,8 +76,9 @@ if (isset($_POST['encwish'])) {
     exit;
 }
 if (isset($_POST['confirm'])) {
-    $sql = "UPDATE user SET confirm=1 WHERE id=:id";
+    $sql = "UPDATE user SET confirm=:confirm WHERE id=:id";
     $rs = $db->prepare($sql);
+    $rs->bindValue(':confirm', intval($_POST['confirm']), PDO::PARAM_INT);
     $rs->bindValue(':id', intval($_SESSION['id']), PDO::PARAM_INT);
     $rs->execute();
     echo 'ok';
