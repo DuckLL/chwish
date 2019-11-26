@@ -1,15 +1,19 @@
 <?php
 require_once('./database.php');
 if (isset($_POST['passcode']) && $_POST['passcode'] === $passcode) {
-    $sql = "INSERT INTO user (username, password) VALUES (?,?)";
-    $rs = $db->prepare($sql);
-    $rs->execute(array(password_hash($_POST['username'], PASSWORD_DEFAULT), password_hash($_POST['password'], PASSWORD_DEFAULT)));
-    // clear encwish
-    $sql = "UPDATE user SET enckey='', encwish='', confirm=0";
-    $rs = $db->prepare($sql);
-    $rs->execute();
-    header('Location: login.php');
-    exit;
+    if ($_POST['password'] !== $_POST['confirmpassword']) {
+        echo 'password error';
+    } else {
+        $sql = "INSERT INTO user (username, password) VALUES (?,?)";
+        $rs = $db->prepare($sql);
+        $rs->execute(array(password_hash($_POST['username'], PASSWORD_DEFAULT), password_hash($_POST['password'], PASSWORD_DEFAULT)));
+        // clear encwish
+        $sql = "UPDATE user SET enckey='', encwish='', confirm=0";
+        $rs = $db->prepare($sql);
+        $rs->execute();
+        header('Location: login.php');
+        exit;
+    }
 }
 ?>
 <html>
@@ -41,7 +45,11 @@ if (isset($_POST['passcode']) && $_POST['passcode'] === $passcode) {
                         <input type="password" id="inline_field" class="nes-input is-warning" name="password" required>
                     </div>
                     <div class="nes-field is-inline">
-                        <label for="inline_field">Invitation code</label>
+                        <label for="inline_field">Password Again</label>
+                        <input type="password" id="inline_field" class="nes-input is-warning" name="confirmpassword" required>
+                    </div>
+                    <div class="nes-field is-inline">
+                        <label for="inline_field">Invitation Code</label>
                         <input type="text" id="inline_field" class="nes-input is-error" name="passcode" required>
                     </div>
 
