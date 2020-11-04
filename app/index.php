@@ -1,6 +1,6 @@
 <?
 require_once('./database.php');
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['username'])) {
     header('Location: login.php');
     exit;
 }
@@ -22,7 +22,7 @@ while ($row = $rs->fetch()) {
     if ($row['confirm']) {
         $confirm_count += 1;
     }
-    if ($row['id'] === $_SESSION['id']) {
+    if ($row['username'] === $_SESSION['username']) {
         $pubkey = $row['pubkey'];
         $enckey = $row['enckey'];
     }
