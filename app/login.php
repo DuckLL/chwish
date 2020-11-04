@@ -5,7 +5,7 @@ if (isset($_POST['username'])) {
 	$rs->execute();
 	while ($row = $rs->fetch()) {
 		if (password_verify($_POST['username'], $row['username']) && password_verify($_POST['password'], $row['password'])) {
-			$_SESSION['id'] = $row['id'];
+			$_SESSION['username'] = $row['username'];
 			header('Location: index.php');
 			exit;
 		}
