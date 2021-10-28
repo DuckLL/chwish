@@ -1,6 +1,6 @@
 <?php
 require_once('./database.php');
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['id'])) {
     header('Location: login.php');
     exit;
 }
