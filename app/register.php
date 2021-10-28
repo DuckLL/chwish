@@ -4,7 +4,7 @@ if (isset($_POST['passcode']) && $_POST['passcode'] === $passcode) {
     if ($_POST['password'] !== $_POST['confirmpassword']) {
         echo 'password error';
     } else {
-        $sql = "INSERT INTO user (username, password) VALUES (?,?)";
+        $sql = "INSERT INTO user (username, password,pubkey) VALUES (?,?,'')";
         $rs = $db->prepare($sql);
         $rs->execute(array(password_hash($_POST['username'], PASSWORD_DEFAULT), password_hash($_POST['password'], PASSWORD_DEFAULT)));
         // clear encwish
